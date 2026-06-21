@@ -20,7 +20,7 @@ in
   home-manager.users.huon = import ./home.nix;
 
   # Bootloader.
-  # boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = false;
   # boot.loader.efi.canTouchEfiVariables = true;
   boot.loader = {
     efi.canTouchEfiVariables = true;
@@ -64,15 +64,8 @@ in
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-
-  # To disable installing GNOME's suite of applications
-  # and only be left with GNOME shell.
-  services.gnome.core-apps.enable = false;
-  services.gnome.core-developer-tools.enable = false;
-  services.gnome.games.enable = false;
-  environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
