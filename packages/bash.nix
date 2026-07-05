@@ -7,6 +7,11 @@
 
     shellAliases = {
       os-rebuild = "sudo nixos-rebuild switch";
+      config = "code ~/nixos";
     };
+
+    bashrcExtra = ''
+      eval "$(direnv hook bash)"
+    '';
   };
 }

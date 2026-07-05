@@ -4,7 +4,7 @@
 
 { config, pkgs, ... }:
 let 
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz";
+  home-manager = fetchTarball "https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz";
 in
 {
   imports =
@@ -13,6 +13,8 @@ in
       (import "${home-manager}/nixos")
     ];
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # home-manager configuration
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
@@ -20,7 +22,7 @@ in
   home-manager.users.huon = import ./home.nix;
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = false;
+  # boot.loader.systemd-boot.enable = false;
   # boot.loader.efi.canTouchEfiVariables = true;
   boot.loader = {
     efi.canTouchEfiVariables = true;
@@ -32,7 +34,7 @@ in
     };
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "OMEN-Laptop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -64,8 +66,14 @@ in
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # Enable the KDE plasma desktop environment.
+  # services.displayManager.sddm.enable = true;
+  # services.desktopManager.plasma6.enable = true;
+
+  # Enable the GNOME desktop environment.
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+  services.gnome.games.enable = false;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -122,6 +130,7 @@ in
    discord
    gh
    vscode
+   curl
    alacritty
   ];
 
@@ -155,7 +164,7 @@ in
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

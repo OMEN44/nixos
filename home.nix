@@ -9,6 +9,10 @@
   home.homeDirectory = "/home/huon";
   home.stateVersion = "26.05";
 
+  imports = [
+    ./dconf.nix
+  ];
+
   programs = (import ./home-programs.nix) { config = config; pkgs = pkgs; };
 
   # home.file.".config/<app>".source = ./config/<app>;
@@ -19,5 +23,9 @@
     vivaldi
     nixd
     rofi
+    devenv
+    nixfmt
+    nixd
+    python314
   ];
 }
