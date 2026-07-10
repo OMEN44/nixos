@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }:
@@ -11,9 +10,14 @@
 
   imports = [
     ./dconf.nix
-  ];
 
-  programs = (import ./home-programs.nix) { config = config; pkgs = pkgs; };
+    # packages
+    ./packages/ulauncher.nix
+    # ./packages/rofi.nix
+    ./packages/git.nix
+    ./packages/gnome-extensions.nix
+    ./packages/bash.nix
+  ];
 
   # home.file.".config/<app>".source = ./config/<app>;
 
@@ -22,10 +26,10 @@
     bat
     vivaldi
     nixd
-    rofi
     devenv
     nixfmt
     nixd
     python314
+    zellij
   ];
 }

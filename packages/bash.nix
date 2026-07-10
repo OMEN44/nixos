@@ -1,8 +1,8 @@
 # Configure bash and setup some aliases.
-{ config, pkgs, ... }:
+{ ... }:
 
 {
-  bash = {
+  programs.bash = {
     enable = true; 
 
     shellAliases = {

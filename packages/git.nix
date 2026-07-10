@@ -1,8 +1,8 @@
 # Configure git setting the user name and email.
-{ config, pkgs, ... }:
+{ ... }:
 
 {
-  git = {
+  programs.git = {
     enable = true;
     settings.user = {
       name = "huon";

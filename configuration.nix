@@ -131,7 +131,7 @@ in
    gh
    vscode
    curl
-   alacritty
+   wmctrl
   ];
 
   hardware.bluetooth.enable = true;
