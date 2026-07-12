@@ -11,9 +11,20 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       (import "${home-manager}/nixos")
+      ./system/swap.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.trusted-users = [ "huon" "@wheel" ];
+
+  nix.settings.trusted-substituters = [
+    "https://roar-qutrc.cachix.org"
+    "https://ros.cachix.org"
+  ];
+  nix.settings.extra-trusted-public-keys = [
+    "roar-qutrc.cachix.org-1:ZKgHZSSHH2hOAN7+83gv1gkraXze5LSEzdocPAEBNnA="
+    "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="
+  ];
 
   # home-manager configuration
   home-manager.useUserPackages = true;
@@ -80,6 +91,11 @@ in
     layout = "au";
     variant = "";
   };
+
+  # nvidia graphics card support
+  hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

@@ -32,5 +32,6 @@
     nixd
     python314
     zellij
+    pixi
   ];
 }

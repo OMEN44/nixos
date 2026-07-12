@@ -12,6 +12,7 @@
 
     bashrcExtra = ''
       eval "$(direnv hook bash)"
+      eval "$(devenv hook bash)"
     '';
   };
 }

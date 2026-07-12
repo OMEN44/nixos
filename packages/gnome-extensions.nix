@@ -14,6 +14,8 @@ let
     dynamic-music-pill
     open-bar
     astra-monitor
+    advanced-alttab-window-switcher
+    tray-icons-reloaded
   ];
 in
 {
