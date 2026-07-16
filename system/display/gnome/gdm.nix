@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   # This is temporary until I figure out how to switch specialisations properly
@@ -11,4 +11,16 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
   services.gnome.games.enable = false;
+
+  # remove bloat
+  environment.gnome.excludePackages = with pkgs; [
+    gnome-calculator
+    gnome-contacts
+    gnome-maps
+    gnome-software
+    epiphany
+    yelp
+    gnome-weather
+    gnome-tour
+  ];
 }
