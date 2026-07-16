@@ -3,47 +3,22 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { pkgs, ... }:
-let 
+let
   home-manager = fetchTarball "https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz";
 in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      (import "${home-manager}/nixos")
-      ./system/swap.nix
-    ];
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.trusted-users = [ "huon" "@wheel" ];
-
-  nix.settings.trusted-substituters = [
-    "https://roar-qutrc.cachix.org"
-    "https://ros.cachix.org"
-  ];
-  nix.settings.extra-trusted-public-keys = [
-    "roar-qutrc.cachix.org-1:ZKgHZSSHH2hOAN7+83gv1gkraXze5LSEzdocPAEBNnA="
-    "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    (import "${home-manager}/nixos")
+    ./system
   ];
 
   # home-manager configuration
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
   home-manager.backupFileExtension = "bak";
-  home-manager.users.huon = import ./home.nix;
-
-  # Bootloader.
-  # boot.loader.systemd-boot.enable = false;
-  # boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    grub = {
-      enable = true;
-      devices = [ "nodev" ];
-      efiSupport = true;
-      useOSProber = true;
-    };
-  };
+  home-manager.users.huon = import ./home/home.nix;
 
   networking.hostName = "OMEN-Laptop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -80,11 +55,6 @@ in
   # Enable the KDE plasma desktop environment.
   # services.displayManager.sddm.enable = true;
   # services.desktopManager.plasma6.enable = true;
-
-  # Enable the GNOME desktop environment.
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-  services.gnome.games.enable = false;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -123,45 +93,17 @@ in
   users.users."huon" = {
     isNormalUser = true;
     description = "huon";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       kdePackages.kate
     ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-   wget
-   btop
-   git
-   direnv
-   discord
-   gh
-   vscode
-   curl
-   wmctrl
-  ];
-
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-
-  # fonts
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-color-emoji
-    liberation_ttf
-  ]
-  # Add all nerd fonts to the system profile
-  ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
