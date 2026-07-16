@@ -1,5 +1,5 @@
 { pkgs, ... }:
-let 
+let
   shellExtensions = with pkgs.gnomeExtensions; [
     # Gnome extensions
     blur-my-shell
@@ -19,9 +19,13 @@ let
   ];
 in
 {
-  home.packages = with pkgs; [
-    cava # This is for the dynamic-music-pill extension
-    dconf2nix
-    dconf-editor
-  ] ++ shellExtensions;
+  home.packages =
+    with pkgs;
+    [
+      cava # This is for the dynamic-music-pill extension
+      dconf2nix
+      dconf-editor
+      orchis-theme
+    ]
+    ++ shellExtensions;
 }
