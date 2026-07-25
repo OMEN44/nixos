@@ -62,11 +62,6 @@ in
     variant = "";
   };
 
-  # nvidia graphics card support
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.open = true;
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -96,6 +91,7 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
+      "dialout"
     ];
     packages = with pkgs; [
       kdePackages.kate

@@ -7,6 +7,7 @@
     ./git.nix
     ./gnome-extensions.nix
     ./ulauncher.nix
+    ./fastfetch.nix
   ];
 
   home.packages = with pkgs; [

@@ -5,7 +5,6 @@
   ];
   nix.settings.trusted-users = [
     "huon"
-    "@wheel"
   ];
   nix.settings.trusted-substituters = [
     "https://roar-qutrc.cachix.org"

@@ -13,6 +13,7 @@
     gh
     vscode
     curl
+    gparted
   ];
 
   # fonts

@@ -5,5 +5,6 @@
     ./packages.nix
     ./settings.nix
     ./specialisations.nix
+    ./nvidia.nix
   ];
 }
