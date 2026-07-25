@@ -14,6 +14,7 @@
     vscode
     curl
     gparted
+    tree
   ];
 
   # fonts

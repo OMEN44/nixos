@@ -18,7 +18,7 @@
   ];
 
   home.file."${config.home.homeDirectory}/.themes/custom".source =
-    "${config.home.homeDirectory}/nixos/dots/gnome-themes/custom";
+    ../dots/gnome-themes/custom;
 
   # home.file.".config/<app>".source = ./config/<app>;
 }

@@ -26,9 +26,9 @@ in
   # home.file.".config/ulauncher".source =
   #  "${config.home.homeDirectory}/nixos/dots/ulauncher-themes/ulauncher";
   home.file.".config/ulauncher/user-themes".source =
-    "${config.home.homeDirectory}/nixos/dots/ulauncher-themes/ulauncher/user-themes";
+    ../../dots/ulauncher-themes/ulauncher/user-themes;
   home.file.".config/ulauncher/settings.json".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/dots/ulauncher-themes/ulauncher/settings.json";
+    config.lib.file.mkOutOfStoreSymlink ../../dots/ulauncher-themes/ulauncher/settings.json;
 
   # Autostart on login via systemd user session.
   systemd.user.services.ulauncher = {
