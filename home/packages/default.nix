@@ -21,5 +21,7 @@
     python314
     zellij
     pixi
+    ltspice
+    arp-scan
   ];
 }

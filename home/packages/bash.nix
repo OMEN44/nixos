@@ -6,7 +6,7 @@
     enable = true; 
 
     shellAliases = {
-      os-rebuild = "sudo nixos-rebuild switch";
+      os-rebuild = "sudo nixos-rebuild --flake ~/nixos/#OMEN-Laptop switch";
       config = "code ~/nixos";
     };
 
