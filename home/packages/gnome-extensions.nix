@@ -25,7 +25,6 @@ in
       cava # This is for the dynamic-music-pill extension
       dconf2nix
       dconf-editor
-      orchis-theme
     ]
     ++ shellExtensions;
 }

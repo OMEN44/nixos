@@ -23,5 +23,7 @@
     pixi
     ltspice
     arp-scan
+    spotify
+    cachix
   ];
 }
