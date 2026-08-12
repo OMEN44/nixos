@@ -25,5 +25,6 @@
     arp-scan
     spotify
     cachix
+    fzf
   ];
 }

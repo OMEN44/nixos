@@ -3,7 +3,7 @@
 
 {
   programs.bash = {
-    enable = true; 
+    enable = true;
 
     shellAliases = {
       os-rebuild = "sudo nixos-rebuild --flake ~/nixos/#OMEN-Laptop switch";
@@ -13,6 +13,7 @@
     bashrcExtra = ''
       eval "$(direnv hook bash)"
       eval "$(devenv hook bash)"
+      eval "$(fzf --bash)"
     '';
   };
 }
