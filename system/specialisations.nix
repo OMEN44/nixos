@@ -41,43 +41,43 @@
         wayland.windowManager.hyprland = {
           enable = true;
           configType = "lua";
-          settings = {
-            config = {
-              general = {
-                gaps_in = 5;
-                gaps_out = 20;
-                border_size = 2;
-              };
+          # settings = {
+          #   config = {
+          #     general = {
+          #       gaps_in = 5;
+          #       gaps_out = 20;
+          #       border_size = 2;
+          #     };
 
-              decoration = {
-                rounding = 10;
-              };
-            };
+          #     decoration = {
+          #       rounding = 10;
+          #     };
+          #   };
 
-            monitor = [
-              {
-                output = "HDMI-A-1";
-                mode = "1920x1080@60";
-                position = "0x0";
-                scale = 1;
-              }
-              {
-                output = "eDP-1";
-                mode = "1920x1080@144.00301";
-                position = "1920x0";
-                scale = 1;
-              }
-            ];
+          #   monitor = [
+          #     {
+          #       output = "HDMI-A-1";
+          #       mode = "1920x1080@60";
+          #       position = "0x0";
+          #       scale = 1;
+          #     }
+          #     {
+          #       output = "eDP-1";
+          #       mode = "1920x1080@144.00301";
+          #       position = "1920x0";
+          #       scale = 1;
+          #     }
+          #   ];
 
-            bind = [
-              {
-                _args = [
-                  "SUPER + RETURN"
-                  (lib.generators.mkLuaInline "lh.dsp.exec_cmd(\"kitty\")")
-                ];
-              }
-            ];
-          };
+          #   bind = [
+          #     {
+          #       _args = [
+          #         "SUPER + RETURN"
+          #         (lib.generators.mkLuaInline "lh.dsp.exec_cmd(\"kitty\")")
+          #       ];
+          #     }
+          #   ];
+          # };
         };
       };
     };
