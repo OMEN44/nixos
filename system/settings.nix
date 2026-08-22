@@ -7,13 +7,17 @@
     trusted-users = [
       "huon"
     ];
-    trusted-substituters = [
-      "https://roar.cachix.org"
+    extra-substituters = [
       "https://ros.cachix.org"
+      "https://roar.cachix.org"
+    ];
+    extra-trusted-substituters = [
+      "https://ros.cachix.org"
+      "https://roar.cachix.org"
     ];
     extra-trusted-public-keys = [
-      "roar.cachix.org-1:XYRwk2AeKATRiicsHxRkk3VWIaitbG6saW5YZvIaPec="
       "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="
+      "roar.cachix.org-1:XYRwk2AeKATRiicsHxRkk3VWIaitbG6saW5YZvIaPec="
     ];
     warn-dirty = false; # disable the git tree dirty warning when using flakes
   };
