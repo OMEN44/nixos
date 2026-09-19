@@ -1,7 +1,7 @@
 {config, ...}: {
   # nvidia graphics card support
   hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true; # enable nvidia modesetting for hyprland compositors
     open = true;

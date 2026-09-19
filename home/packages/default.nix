@@ -26,5 +26,16 @@
     spotify
     cachix
     fzf
+    libreoffice
+    obs-studio
+    # camera tools
+    guvcview # video device settings editor gui
+    v4l-utils
+
+    xinit
+    kitty
+    alacritty
+
+    quickshell
   ];
 }
