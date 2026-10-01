@@ -33,7 +33,8 @@
 
 .item-container {
     margin: 8px -10px 0 -10px;
-    border-bottom: 2px transparent solid;
+    border: 1px transparent solid;
+    border-bottom: 3px transparent solid;
 }
 
 .item-name {
@@ -51,7 +52,8 @@
 .selected .item-container {
     background-color: @primary_t;
     border-radius: 5px;
-    border-bottom: 2px @primary_t solid;
+    border: 1px @primary_t solid;
+    border-bottom: 3px @primary_t solid;
 }
 
 .result-box {
