@@ -12,6 +12,9 @@
     };
 
     bashrcExtra = ''
+      # Ignore duplicate commands in history and erase duplicates
+      export HISTCONTROL=ignoredups:erasedups
+
       eval "$(direnv hook bash)"
       eval "$(devenv hook bash)"
       eval "$(fzf --bash)"

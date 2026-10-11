@@ -28,6 +28,7 @@
     fzf
     libreoffice
     obs-studio
+    rpi-imager
     # camera tools
     guvcview # video device settings editor gui
     v4l-utils

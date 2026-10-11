@@ -16,7 +16,10 @@ with lib.hm.gvariant;
     "org/gnome/Console" = {
       ignore-scrollback-limit = true;
       last-window-maximised = true;
-      last-window-size = mkTuple [ 526 456 ];
+      last-window-size = mkTuple [
+        526
+        456
+      ];
     };
 
     "org/gnome/calculator" = {
@@ -26,16 +29,28 @@ with lib.hm.gvariant;
       target-units = [ "radian" ];
       unit-category = "angle";
       window-maximized = false;
-      window-size = mkTuple [ 360 616 ];
+      window-size = mkTuple [
+        360
+        616
+      ];
     };
 
     "org/gnome/control-center" = {
       last-panel = "keyboard";
-      window-state = mkTuple [ 980 640 false ];
+      window-state = mkTuple [
+        980
+        640
+        false
+      ];
     };
 
     "org/gnome/desktop/app-folders" = {
-      folder-children = [ "System" "Utilities" "YaST" "Pardus" ];
+      folder-children = [
+        "System"
+        "Utilities"
+        "YaST"
+        "Pardus"
+      ];
     };
 
     "org/gnome/desktop/app-folders/folders/Pardus" = {
@@ -45,13 +60,25 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/app-folders/folders/System" = {
-      apps = [ "org.gnome.baobab.desktop" "org.gnome.DiskUtility.desktop" "org.gnome.Logs.desktop" "org.gnome.SystemMonitor.desktop" ];
+      apps = [
+        "org.gnome.baobab.desktop"
+        "org.gnome.DiskUtility.desktop"
+        "org.gnome.Logs.desktop"
+        "org.gnome.SystemMonitor.desktop"
+      ];
       name = "X-GNOME-Shell-System.directory";
       translate = true;
     };
 
     "org/gnome/desktop/app-folders/folders/Utilities" = {
-      apps = [ "org.gnome.Decibels.desktop" "org.gnome.Connections.desktop" "org.gnome.Papers.desktop" "org.gnome.font-viewer.desktop" "org.gnome.Loupe.desktop" "org.gnome.seahorse.Application.desktop" ];
+      apps = [
+        "org.gnome.Decibels.desktop"
+        "org.gnome.Connections.desktop"
+        "org.gnome.Papers.desktop"
+        "org.gnome.font-viewer.desktop"
+        "org.gnome.Loupe.desktop"
+        "org.gnome.seahorse.Application.desktop"
+      ];
       name = "X-GNOME-Shell-Utilities.directory";
       translate = true;
     };
@@ -82,7 +109,12 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/input-sources" = {
-      sources = [ (mkTuple [ "xkb" "au" ]) ];
+      sources = [
+        (mkTuple [
+          "xkb"
+          "au"
+        ])
+      ];
       xkb-options = [ "terminate:ctrl_alt_bksp" ];
     };
 
@@ -95,7 +127,14 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "code" "gnome-power-panel" "gnome-about-panel" "vivaldi-stable" "discord" "org-gnome-console" ];
+      application-children = [
+        "code"
+        "gnome-power-panel"
+        "gnome-about-panel"
+        "vivaldi-stable"
+        "discord"
+        "org-gnome-console"
+      ];
     };
 
     "org/gnome/desktop/notifications/application/code" = {
@@ -139,7 +178,11 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/search-providers" = {
-      sort-order = [ "org.gnome.Settings.desktop" "org.gnome.Contacts.desktop" "org.gnome.Nautilus.desktop" ];
+      sort-order = [
+        "org.gnome.Settings.desktop"
+        "org.gnome.Contacts.desktop"
+        "org.gnome.Nautilus.desktop"
+      ];
     };
 
     "org/gnome/desktop/session" = {
@@ -147,8 +190,8 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/wm/keybindings" = {
-      switch-applications = [];
-      switch-applications-backward = [];
+      switch-applications = [ ];
+      switch-applications-backward = [ ];
       switch-windows = [ "<Alt>Tab" ];
       switch-windows-backward = [ "<Shift><Alt>Tab" ];
     };
@@ -159,7 +202,10 @@ with lib.hm.gvariant;
 
     "org/gnome/epiphany/state" = {
       is-maximized = false;
-      window-size = mkTuple [ 1024 768 ];
+      window-size = mkTuple [
+        1024
+        768
+      ];
     };
 
     "org/gnome/gnome-system-monitor" = {
@@ -187,8 +233,14 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/nautilus/window-state" = {
-      initial-size = mkTuple [ 890 550 ];
-      initial-size-file-chooser = mkTuple [ 890 550 ];
+      initial-size = mkTuple [
+        890
+        550
+      ];
+      initial-size-file-chooser = mkTuple [
+        890
+        550
+      ];
       maximized = true;
     };
 
@@ -209,7 +261,11 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/" ];
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
+      ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
@@ -232,13 +288,34 @@ with lib.hm.gvariant;
 
     "org/gnome/settings-daemon/plugins/power" = {
       sleep-inactive-ac-type = "nothing";
+      idle-dim = false;
     };
 
     "org/gnome/shell" = {
       command-history = [ "lg" ];
-      disabled-extensions = [ "dash-to-panel@jderose9.github.com" "openbar@neuromorph" ];
-      enabled-extensions = [ "blur-my-shell@aunetx" "clipboard-indicator@tudmotu.com" "user-theme@gnome-shell-extensions.gcampax.github.com" "just-perfection-desktop@just-perfection" "color-picker@tuberry" "dash-to-dock@micxgx.gmail.com" "rounded-window-corners@fxgn" "top-bar-organizer@julian.gse.jsts.xyz" "dynamic-music-pill@andbal" "monitor@astraext.github.io" "trayIconsReloaded@selfmade.pl" ];
-      favorite-apps = [ "vivaldi-stable.desktop" "org.gnome.Nautilus.desktop" "org.gnome.Console.desktop" "code.desktop" ];
+      disabled-extensions = [
+        "dash-to-panel@jderose9.github.com"
+        "openbar@neuromorph"
+      ];
+      enabled-extensions = [
+        "blur-my-shell@aunetx"
+        "clipboard-indicator@tudmotu.com"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
+        "just-perfection-desktop@just-perfection"
+        "color-picker@tuberry"
+        "dash-to-dock@micxgx.gmail.com"
+        "rounded-window-corners@fxgn"
+        "top-bar-organizer@julian.gse.jsts.xyz"
+        "dynamic-music-pill@andbal"
+        "monitor@astraext.github.io"
+        "trayIconsReloaded@selfmade.pl"
+      ];
+      favorite-apps = [
+        "vivaldi-stable.desktop"
+        "org.gnome.Nautilus.desktop"
+        "org.gnome.Console.desktop"
+        "code.desktop"
+      ];
       welcome-dialog-last-shown-version = "50.1";
     };
 
@@ -435,11 +512,25 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell/extensions/top-bar-organizer" = {
-      center-box-order = [];
+      center-box-order = [ ];
       hide = [ "activities" ];
-      left-box-order = [ "dateMenu" "activities" ];
-      right-box-order = [ "TrayIconsReloaded" "monitor@astraext.github.io" "color-picker@tuberry" "screenRecording" "clipboardIndicator" "screenSharing" "dwellClick" "a11y" "keyboard" "quickSettings" ];
-      show = [];
+      left-box-order = [
+        "dateMenu"
+        "activities"
+      ];
+      right-box-order = [
+        "TrayIconsReloaded"
+        "monitor@astraext.github.io"
+        "color-picker@tuberry"
+        "screenRecording"
+        "clipboardIndicator"
+        "screenSharing"
+        "dwellClick"
+        "a11y"
+        "keyboard"
+        "quickSettings"
+      ];
+      show = [ ];
     };
 
     "org/gnome/shell/extensions/trayIconsReloaded" = {
@@ -468,12 +559,31 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell/world-clocks" = {
-      locations = [];
+      locations = [ ];
     };
 
     "org/gtk/gtk4/settings/color-chooser" = {
-      custom-colors = [ (mkTuple [ 0.486275 0.992157 0.996078 1.0 ]) (mkTuple [ 0.5 0.5 0.5 1.0 ]) ];
-      selected-color = mkTuple [ true 0.486275 0.992157 0.996078 1.0 ];
+      custom-colors = [
+        (mkTuple [
+          0.486275
+          0.992157
+          0.996078
+          1.0
+        ])
+        (mkTuple [
+          0.5
+          0.5
+          0.5
+          1.0
+        ])
+      ];
+      selected-color = mkTuple [
+        true
+        0.486275
+        0.992157
+        0.996078
+        1.0
+      ];
     };
 
     "org/gtk/gtk4/settings/file-chooser" = {
