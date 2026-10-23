@@ -9,6 +9,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mangowm = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # quickshell = {
     #   url = "github:quickshell-mirror/quickshell";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -20,6 +24,7 @@
       self,
       nixpkgs,
       home-manager,
+      mangowm,
       # quickshell,
       ...
     }:
@@ -30,6 +35,7 @@
           modules = [
             ./configuration.nix
             # home-manager configuration
+            mangowm.nixosModules.mango
             home-manager.nixosModules.home-manager
             {
               home-manager = {
