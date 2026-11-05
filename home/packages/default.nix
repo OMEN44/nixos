@@ -29,6 +29,7 @@
     libreoffice
     obs-studio
     rpi-imager
+    kicad
     # camera tools
     guvcview # video device settings editor gui
     v4l-utils
