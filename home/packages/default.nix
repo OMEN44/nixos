@@ -8,12 +8,11 @@
     ./gnome-extensions.nix
     ./ulauncher.nix
     ./fastfetch.nix
+    ./vivaldi.nix
   ];
 
   home.packages = with pkgs; [
-    # Add your home packages here, for example:
     bat
-    vivaldi
     nixd
     devenv
     nixfmt
@@ -22,6 +21,7 @@
     zellij
     pixi
     ltspice
+    nix-output-monitor
     arp-scan
     spotify
     cachix
