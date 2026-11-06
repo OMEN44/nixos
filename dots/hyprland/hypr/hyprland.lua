@@ -22,6 +22,11 @@ for position_name, monitor in pairs(config.monitors) do
 end
 hl.env("XCURSOR_SIZE", "24")
 
+local hyprcapture_plugin = os.getenv("HYPRCAPTURE_PLUGIN")
+if hyprcapture_plugin then
+	hl.plugin.load(hyprcapture_plugin)
+end
+
 hl.config({
 	general = { gaps_in = 2, gaps_out = 2, border_size = 1, layout = "dwindle" },
 	input = {
@@ -41,6 +46,9 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("mako")
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	hl.exec_cmd("quickshell")
+	if hyprcapture_plugin then
+		os.execute("hyprctl reload")
+	end
 end)
 
 -- Include additional configuration files

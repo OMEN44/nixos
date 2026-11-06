@@ -29,6 +29,24 @@
           system = "x86_64-linux";
           modules = [
             ./configuration.nix
+            {
+              nixpkgs.overlays = [
+                (
+                  final: _prev:
+                  let
+                    src = final.fetchFromGitHub {
+                      owner = "gfhdhytghd";
+                      repo = "HyprCapture";
+                      rev = "1192840fcd7d6d48f48a1a090b482c5dc54ccf28";
+                      hash = "sha256-W/WYtK5E3q0pluZ+VMVLsxywN0fqAwHw2PP8rSvLVfc=";
+                    };
+                  in
+                  {
+                    hyprcapture = final.callPackage "${src}/nix/package.nix" { inherit src; };
+                  }
+                )
+              ];
+            }
             # home-manager configuration
             mangowm.nixosModules.mango
             home-manager.nixosModules.home-manager

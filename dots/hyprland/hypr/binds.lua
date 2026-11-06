@@ -16,6 +16,14 @@ hl.bind("Menu", hl.dsp.exec_cmd(menu))
 
 hl.bind(mod .. "+v", hl.dsp.exec_cmd("cursor-clip")) -- clipboard manager
 hl.bind(mod .. "+Shift+c", hl.dsp.exec_cmd('color=$(hyprpicker -a) && wl-copy "$color"')) -- colour picker
+local hyprcapture = hl.plugin.hyprcapture
+if hyprcapture then
+	hl.bind("Print", hyprcapture.open_editor)
+	hl.bind("SHIFT+Print", function()
+		hyprcapture.open("fullscreen")
+	end)
+	hl.bind("ALT+Print", hyprcapture.record_toggle)
+end
 
 --------------< Window management >--------------
 
@@ -36,12 +44,28 @@ hl.window_rule({
 })
 -- drag with SUPER + left mouse button
 hl.bind(mod .. "+mouse:272", hl.dsp.window.drag())
-local double_click_time = 0.3 -- seconds
-local last_click_time = 0
-hl.bind(mod .. "+mouse:272", function()
-	local current_time = os.clock()
-	if current_time - last_click_time <= double_click_time then
-		hl.dsp.window.float()
+-- resize with SUPER + right mouse button
+hl.bind(mod .. "+mouse:273", hl.dsp.window.resize())
+-- move with SUPER + arrow keys
+hl.bind(mod .. "+left", hl.dsp.window.move({ x = -50, y = 0, relative = true }))
+hl.bind(mod .. "+right", hl.dsp.window.move({ x = 50, y = 0, relative = true }))
+hl.bind(mod .. "+up", hl.dsp.window.move({ x = 0, y = -50, relative = true }))
+hl.bind(mod .. "+down", hl.dsp.window.move({ x = 0, y = 50, relative = true }))
+-- resize with SUPER + ALT + arrow keys
+hl.bind(mod .. "+ALT+left", hl.dsp.window.resize({ x = -50, y = 0, relative = true }))
+hl.bind(mod .. "+ALT+right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }))
+hl.bind(mod .. "+ALT+up", hl.dsp.window.resize({ x = 0, y = 50, relative = true }))
+hl.bind(mod .. "+ALT+down", hl.dsp.window.resize({ x = 0, y = -50, relative = true }))
+-- minimise a window
+hl.bind(mod .. "+X", function()
+	if hl.get_workspace("special:minimized") then
+		hl.dispatch(hl.dsp.window.move({ workspace = hl.get_active_workspace(), window = "tag:minimized" }))
+		hl.dispatch(hl.dsp.window.clear_tags({ window = "tag:minimized" }))
+	else
+		hl.dispatch(hl.dsp.window.tag({ tag = "minimized", window = hl.get_active_window() }))
+		hl.dispatch(hl.dsp.window.move({ workspace = "special:minimized", follow = false }))
 	end
-	last_click_time = current_time
 end)
+-- alt + tab to switch between windows
+hl.bind("ALT+Tab", hl.dsp.window.cycle_next())
+hl.bind("ALT+Shift+Tab", hl.dsp.window.cycle_next({ reverse = true }))
