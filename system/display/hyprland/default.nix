@@ -13,6 +13,7 @@ args@{ lib, pkgs, ... }:
     };
     services.displayManager.defaultSession = "hyprland-uwsm";
     services.blueman.enable = true;
+    services.upower.enable = true;
 
     # since you installed Home Manager via its NixOS module and 'home-manager.useUserPackages' is enabled, you need to add
     environment.pathsToLink = [
