@@ -5,12 +5,15 @@ local terminal = "alacritty"
 local menu = "ulauncher-toggle"
 local vivaldi = "vivaldi"
 
+--------------< Applications >--------------
+
 hl.bind(mod .. "+Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mod .. "+Q", hl.dsp.window.close())
 hl.bind(mod .. "+Shift+Return", hl.dsp.exec_cmd(vivaldi))
 hl.bind("Menu", hl.dsp.exec_cmd(menu))
 
--- Utilities
+--------------< Utilities >--------------
+
 hl.bind(mod .. "+v", hl.dsp.exec_cmd("cursor-clip")) -- clipboard manager
 hl.bind(mod .. "+Shift+c", hl.dsp.exec_cmd('color=$(hyprpicker -a) && wl-copy "$color"')) -- colour picker
 

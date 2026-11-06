@@ -13,10 +13,6 @@
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # quickshell = {
-    #   url = "github:quickshell-mirror/quickshell";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
 
   outputs =
@@ -25,7 +21,6 @@
       nixpkgs,
       home-manager,
       mangowm,
-      # quickshell,
       ...
     }:
     {

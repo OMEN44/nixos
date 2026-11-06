@@ -25,6 +25,7 @@
         home.packages = with pkgs; [
           wofi
           nautilus
+          quickshell
           # clipboard manager
           wl-clipboard
           wl-clip-persist
@@ -41,6 +42,8 @@
           hyprpaper
         ];
 
+        xdg.configFile."quickshell".source =
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/dots/quickshell";
         xdg.configFile."hypr".source =
           config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/dots/hyprland/hypr";
 

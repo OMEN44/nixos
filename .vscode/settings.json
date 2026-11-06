@@ -1,7 +1,6 @@
 {
   "Lua.workspace.library": [
     "/run/current-system/sw/share/hypr/stubs",
-    // "/run/current-system/specialisation/hyprland-lua/sw/share/hypr/stubs"
   ],
   "Lua.diagnostics.globals": ["hl"],
   "Lua.workspace.checkThirdParty": false,
@@ -12,5 +11,10 @@
     "editor.formatOnSave": true
   },
   "stylua.styluaPath": "/etc/profiles/per-user/huon/bin/stylua",
-  "stylua.disableVersionCheck": true
+  "stylua.disableVersionCheck": true,
+  "qt-qml.qmlls.customExePath": "/etc/profiles/per-user/huon/bin/qmlls",
+  "qt-qml.qmlls.useQmlImportPathEnvVar": true,
+  "qt-qml.qmlls.additionalImportPaths": [
+      "${workspaceFolder}/imports"
+  ]
 }

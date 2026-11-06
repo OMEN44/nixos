@@ -34,14 +34,13 @@
     guvcview # video device settings editor gui
     v4l-utils
 
-    # lua tools are here since I dont want to use devenv for system config
+    # lua and qml tools are here since I dont want to use devenv for system config
     lua-language-server
     stylua
+    kdePackages.qtdeclarative # for qml language server
 
     xinit
     kitty
     alacritty
-
-    quickshell
   ];
 }
