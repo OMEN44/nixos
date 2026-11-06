@@ -34,6 +34,10 @@
     guvcview # video device settings editor gui
     v4l-utils
 
+    # lua tools are here since I dont want to use devenv for system config
+    lua-language-server
+    stylua
+
     xinit
     kitty
     alacritty

@@ -1,0 +1,16 @@
+{
+  "Lua.workspace.library": [
+    "/run/current-system/sw/share/hypr/stubs",
+    // "/run/current-system/specialisation/hyprland-lua/sw/share/hypr/stubs"
+  ],
+  "Lua.diagnostics.globals": ["hl"],
+  "Lua.workspace.checkThirdParty": false,
+  "Lua.format.enable": false,
+  "Lua.misc.executablePath": "lua-language-server",
+  "[lua]": {
+    "editor.defaultFormatter": "JohnnyMorganz.stylua",
+    "editor.formatOnSave": true
+  },
+  "stylua.styluaPath": "/etc/profiles/per-user/huon/bin/stylua",
+  "stylua.disableVersionCheck": true
+}

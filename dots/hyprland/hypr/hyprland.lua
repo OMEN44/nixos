@@ -1,0 +1,49 @@
+local config = require("contants")
+
+for position_name, monitor in pairs(config.monitors) do
+	local position = ""
+	if position_name == "center" then
+		position = "0x0"
+	elseif position_name == "left" then
+		position = "-" .. tostring(monitor.width) .. "x0"
+	elseif position_name == "right" then
+		position = tostring(config.monitors.center.width) .. "x0"
+	elseif position_name == "top" then
+		position = "0x-" .. tostring(monitor.height)
+	elseif position_name == "bottom" then
+		position = "0x" .. tostring(config.monitors.center.height)
+	end
+	hl.monitor({
+		output = monitor.name,
+		mode = tostring(monitor.width) .. "x" .. tostring(monitor.height) .. "@" .. tostring(monitor.refresh),
+		position = position,
+		scale = monitor.scale,
+	})
+end
+hl.env("XCURSOR_SIZE", "24")
+
+hl.config({
+	general = { gaps_in = 2, gaps_out = 2, border_size = 1, layout = "dwindle" },
+	input = {
+		kb_layout = "au",
+		follow_mouse = 2,
+		repeat_rate = 35,
+		repeat_delay = 200,
+		touchpad = { natural_scroll = true },
+	},
+	debug = {
+		disable_logs = false,
+	},
+})
+
+hl.on("hyprland.start", function()
+	hl.exec_cmd("cursor-clip --daemon")
+	hl.exec_cmd("mako")
+	hl.exec_cmd("systemctl --user start hyprpolkitagent")
+	hl.exec_cmd("quickshell")
+end)
+
+-- Include additional configuration files
+require("theming")
+require("binds")
+require("window_rules")
