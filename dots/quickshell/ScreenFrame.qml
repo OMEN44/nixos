@@ -90,6 +90,38 @@ Scope {
             x: (win.width - width) / 2
             y: win.height - root.thickness - root.notchHeight / 2 - height / 2
         }
+
+        // Tooltip for the app list. Same look as the pill tooltips, sitting just above the bar.
+        Rectangle {
+            id: appTip
+            z: 100
+            visible: opacity > 0
+            opacity: appList.hoveredEntry ? 1 : 0
+            width: tipLabel.width + 20
+            height: tipLabel.implicitHeight + 12
+            radius: 8
+            color: Theme.background
+            border.width: 2
+            border.color: Theme.primary
+
+            // Centred over the hovered icon, kept on screen.
+            x: Math.max(8, Math.min(win.width - width - 8, appList.x + appList.tipX - width / 2))
+            y: bottomBar.y - 4 - height
+
+            Behavior on opacity {
+                NumberAnimation { duration: 120 }
+            }
+
+            Text {
+                id: tipLabel
+                anchors.centerIn: parent
+                text: appList.tipText
+                color: Theme.text
+                font.pixelSize: Theme.fontSize - 1
+                elide: Text.ElideRight
+                width: Math.min(implicitWidth, 360) // long titles are cut with an ellipsis
+            }
+        }
     }
 
     // Layer-shell only honours an exclusive zone for a window anchored to exactly one

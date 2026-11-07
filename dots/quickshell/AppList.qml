@@ -2,6 +2,7 @@ pragma ComponentBehavior: Bound
 
 import Quickshell
 import Quickshell.Wayland
+import Quickshell.Hyprland
 import Quickshell.Widgets
 import QtQuick
 
@@ -13,6 +14,12 @@ ListView {
     property real cell: 32 // size of one clickable slot
     property real iconSize: 22
     property color accent: "#87D2D7"
+
+    // Hover state for the tooltip. The tooltip itself is drawn by ScreenFrame,
+    // because this view clips everything outside its own box.
+    property var hoveredEntry: null
+    property string tipText: ""
+    property real tipX: 0 // centre of the hovered icon, in this view's coordinates
 
     // Width needed to show every icon unclipped. The parent uses this to size the notch.
     readonly property real fullWidth: count > 0 ? count * cell + (count - 1) * spacing : 0
@@ -32,6 +39,10 @@ ListView {
 
         readonly property string appId: modelData.appId
         readonly property var desktopEntry: DesktopEntries.heuristicLookup(appId)
+
+        // This window's Hyprland object. A window on a special workspace is a minimised one.
+        readonly property var hyprWindow: Hyprland.toplevels.values.find(t => t.wayland === modelData)
+        readonly property bool minimised: hyprWindow?.workspace?.name.startsWith("special:") ?? false
 
         // Icon names to try, best first. The first one the icon theme really has wins.
         // iconPath(name, true) returns "" for a missing icon, instead of Qt's black and
@@ -63,6 +74,11 @@ ListView {
                 console.warn("AppList: no icon found for appId '" + appId + "'");
         }
 
+        Component.onDestruction: {
+            if (root.hoveredEntry === entry)
+                root.hoveredEntry = null;
+        }
+
         Rectangle {
             anchors.fill: parent
             radius: 8
@@ -76,6 +92,7 @@ ListView {
 
         IconImage {
             visible: entry.iconSource !== ""
+            opacity: entry.minimised ? 0.45 : 1
             anchors.centerIn: parent
             implicitSize: root.iconSize
             source: entry.iconSource
@@ -103,7 +120,22 @@ ListView {
             id: mouse
             anchors.fill: parent
             hoverEnabled: true
-            onClicked: entry.modelData.activate()
+            onContainsMouseChanged: {
+                if (containsMouse) {
+                    root.hoveredEntry = entry;
+                    root.tipText = entry.modelData.title || entry.appId;
+                    root.tipX = entry.x + entry.width / 2 - root.contentX;
+                } else if (root.hoveredEntry === entry) {
+                    root.hoveredEntry = null;
+                }
+            }
+            onClicked: {
+                if (entry.minimised)
+                    // Restore just this window; activate() would open the whole special workspace.
+                    Quickshell.execDetached(["hyprctl", "eval", 'minimise_restore_one("' + entry.hyprWindow.address + '")']);
+                else
+                    entry.modelData.activate();
+            }
         }
     }
 

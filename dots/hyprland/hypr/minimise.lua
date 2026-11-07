@@ -60,8 +60,18 @@ end)
 
 --------------< Show >--------------
 
--- Bring hidden windows back to where they were. `only_overlapping` is a window:
--- when given, only hidden windows whose old position overlaps it come back.
+-- Move one hidden window back where it was: same workspace, size and position, on top.
+local function bring_back(f, rec)
+	local ws = hl.get_workspace(rec.ws) or hl.get_active_workspace()
+	hl.dispatch(hl.dsp.window.move({ window = f, workspace = ws, follow = false }))
+	hl.dispatch(hl.dsp.window.resize({ window = f, x = rec.w, y = rec.h }))
+	hl.dispatch(hl.dsp.window.move({ window = f, x = rec.x, y = rec.y }))
+	hl.dispatch(hl.dsp.window.alter_zorder({ window = f, mode = "top" }))
+	hidden[f.address] = nil
+end
+
+-- Bring hidden windows back. `only_overlapping` is a window: when given, only hidden
+-- windows whose old position overlaps it come back.
 local function restore(only_overlapping)
 	local prev = hl.get_active_window()
 
@@ -91,13 +101,7 @@ local function restore(only_overlapping)
 					)
 				)
 			then
-				local ws = hl.get_workspace(rec.ws) or hl.get_active_workspace()
-				hl.dispatch(hl.dsp.window.move({ window = f, workspace = ws, follow = false }))
-				-- Exactly as before: same size, same position, on top.
-				hl.dispatch(hl.dsp.window.resize({ window = f, x = rec.w, y = rec.h }))
-				hl.dispatch(hl.dsp.window.move({ window = f, x = rec.x, y = rec.y }))
-				hl.dispatch(hl.dsp.window.alter_zorder({ window = f, mode = "top" }))
-				hidden[f.address] = nil
+				bring_back(f, rec)
 			end
 		end
 
@@ -126,6 +130,22 @@ hl.bind("SUPER + F", function()
 		restore(w)
 	end
 end)
+
+-- Called from Quickshell (hyprctl eval) when a minimised app is clicked in the app list:
+-- bring back only that window and focus it. The special workspace is never opened.
+function _G.minimise_restore_one(address)
+	local want = tostring(address):gsub("^0x", ""):lower()
+	for _, f in ipairs(hl.get_windows()) do
+		local rec = hidden[f.address]
+		if rec and f.address:gsub("^0x", ""):lower() == want then
+			run_guarded(function()
+				bring_back(f, rec)
+				hl.dispatch(hl.dsp.focus({ window = f }))
+			end)
+			return
+		end
+	end
+end
 
 --------------< Alt + Tab >--------------
 
