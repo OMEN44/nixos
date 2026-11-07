@@ -27,8 +27,6 @@ args@{ lib, pkgs, ... }:
         wofi
         nautilus
         quickshell
-        hyprcapture
-        ffmpeg
         libnotify
         xdg-utils
         # clipboard manager
@@ -38,7 +36,8 @@ args@{ lib, pkgs, ... }:
         # notifications
         mako
         # screenshot tool
-
+        hyprcapture
+        ffmpeg
         # colour picker
         hyprpicker
         # auth agent (lets apps make admin prompts)

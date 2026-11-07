@@ -8,7 +8,9 @@ local vivaldi = "vivaldi"
 --------------< Applications >--------------
 
 hl.bind(mod .. "+Return", hl.dsp.exec_cmd(terminal))
+hl.bind("CTRL+ALT+T", hl.dsp.exec_cmd(terminal))
 hl.bind(mod .. "+Q", hl.dsp.window.close())
+hl.bind("ALT+F4", hl.dsp.window.close())
 hl.bind(mod .. "+Shift+Return", hl.dsp.exec_cmd(vivaldi))
 hl.bind("Menu", hl.dsp.exec_cmd(menu))
 
@@ -47,25 +49,26 @@ hl.bind(mod .. "+mouse:272", hl.dsp.window.drag())
 -- resize with SUPER + right mouse button
 hl.bind(mod .. "+mouse:273", hl.dsp.window.resize())
 -- move with SUPER + arrow keys
-hl.bind(mod .. "+left", hl.dsp.window.move({ x = -50, y = 0, relative = true }))
-hl.bind(mod .. "+right", hl.dsp.window.move({ x = 50, y = 0, relative = true }))
-hl.bind(mod .. "+up", hl.dsp.window.move({ x = 0, y = -50, relative = true }))
-hl.bind(mod .. "+down", hl.dsp.window.move({ x = 0, y = 50, relative = true }))
+hl.bind(mod .. "+CTRL+left", hl.dsp.window.move({ x = -50, y = 0, relative = true }))
+hl.bind(mod .. "+CTRL+right", hl.dsp.window.move({ x = 50, y = 0, relative = true }))
+hl.bind(mod .. "+CTRL+up", hl.dsp.window.move({ x = 0, y = -50, relative = true }))
+hl.bind(mod .. "+CTRL+down", hl.dsp.window.move({ x = 0, y = 50, relative = true }))
 -- resize with SUPER + ALT + arrow keys
 hl.bind(mod .. "+ALT+left", hl.dsp.window.resize({ x = -50, y = 0, relative = true }))
 hl.bind(mod .. "+ALT+right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }))
 hl.bind(mod .. "+ALT+up", hl.dsp.window.resize({ x = 0, y = 50, relative = true }))
 hl.bind(mod .. "+ALT+down", hl.dsp.window.resize({ x = 0, y = -50, relative = true }))
 -- minimise a window
-hl.bind(mod .. "+X", function()
-	if hl.get_workspace("special:minimized") then
-		hl.dispatch(hl.dsp.window.move({ workspace = hl.get_active_workspace(), window = "tag:minimized" }))
-		hl.dispatch(hl.dsp.window.clear_tags({ window = "tag:minimized" }))
-	else
-		hl.dispatch(hl.dsp.window.tag({ tag = "minimized", window = hl.get_active_window() }))
-		hl.dispatch(hl.dsp.window.move({ workspace = "special:minimized", follow = false }))
-	end
-end)
+-- hl.bind(mod .. "+X", function()
+-- 	if hl.get_workspace("special:minimized") then
+-- 		hl.dispatch(hl.dsp.window.move({ workspace = hl.get_active_workspace(), window = "tag:minimized" }))
+-- 		hl.dispatch(hl.dsp.window.clear_tags({ window = "tag:minimized" }))
+-- 	else
+-- 		hl.dispatch(hl.dsp.window.tag({ tag = "minimized", window = hl.get_active_window() }))
+-- 		hl.dispatch(hl.dsp.window.move({ workspace = "special:minimized", follow = false }))
+-- 	end
+-- end)
+
 -- alt + tab to switch between windows
 hl.bind("ALT+Tab", hl.dsp.window.cycle_next())
 hl.bind("ALT+Shift+Tab", hl.dsp.window.cycle_next({ reverse = true }))

@@ -28,7 +28,15 @@ if hyprcapture_plugin then
 end
 
 hl.config({
-	general = { gaps_in = 2, gaps_out = 2, border_size = 1, layout = "dwindle" },
+	general = {
+		gaps_in = 2,
+		gaps_out = 2,
+		border_size = 1,
+		layout = "dwindle",
+	},
+	dwindle = {
+		preserve_split = true,
+	},
 	input = {
 		kb_layout = "au",
 		follow_mouse = 2,
@@ -39,6 +47,10 @@ hl.config({
 	debug = {
 		disable_logs = false,
 	},
+	misc = {
+		disable_splash_rendering = true,
+		disable_hyprland_logo = true,
+	},
 })
 
 hl.on("hyprland.start", function()
@@ -46,6 +58,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("mako")
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	hl.exec_cmd("quickshell")
+	hl.exec_cmd("hyprpaper")
 	if hyprcapture_plugin then
 		os.execute("hyprctl reload")
 	end
