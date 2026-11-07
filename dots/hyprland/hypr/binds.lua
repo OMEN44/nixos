@@ -26,6 +26,14 @@ if hyprcapture then
 	end)
 	hl.bind("ALT+Print", hyprcapture.record_toggle)
 end
+-- cheat sheet: SUPER + ? (Shift + /) opens keybinds.txt in a terminal, q closes it
+local help_command = hl.dsp.exec_cmd(
+	terminal
+		.. " --title Keybinds -o window.dimensions.columns=90 -o window.dimensions.lines=50"
+		.. " -e less -R ~/.config/hypr/keybinds.txt"
+)
+hl.bind(mod .. "+SHIFT+slash", help_command)
+hl.bind(mod .. "+slash", help_command)
 
 --------------< Window management >--------------
 
