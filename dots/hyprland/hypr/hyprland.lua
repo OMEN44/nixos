@@ -27,6 +27,13 @@ if hyprcapture_plugin then
 	hl.plugin.load(hyprcapture_plugin)
 end
 
+-- Bring focused floating window to the top of the stack
+hl.on("window.active", function(win)
+	if win then
+		hl.dsp.window.alter_zorder({ mode = "top" })
+	end
+end)
+
 hl.config({
 	general = {
 		gaps_in = 2,
@@ -36,12 +43,14 @@ hl.config({
 	},
 	dwindle = {
 		preserve_split = true,
+		precise_mouse_move = true,
 	},
 	input = {
 		kb_layout = "au",
 		follow_mouse = 2,
 		repeat_rate = 35,
 		repeat_delay = 200,
+		float_switch_override_focus = 0,
 		touchpad = { natural_scroll = true },
 	},
 	debug = {
@@ -67,4 +76,6 @@ end)
 -- Include additional configuration files
 require("theming")
 require("binds")
+require("minimise")
+require("window_snap")
 require("window_rules")

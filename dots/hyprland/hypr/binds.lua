@@ -58,17 +58,3 @@ hl.bind(mod .. "+ALT+left", hl.dsp.window.resize({ x = -50, y = 0, relative = tr
 hl.bind(mod .. "+ALT+right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }))
 hl.bind(mod .. "+ALT+up", hl.dsp.window.resize({ x = 0, y = 50, relative = true }))
 hl.bind(mod .. "+ALT+down", hl.dsp.window.resize({ x = 0, y = -50, relative = true }))
--- minimise a window
--- hl.bind(mod .. "+X", function()
--- 	if hl.get_workspace("special:minimized") then
--- 		hl.dispatch(hl.dsp.window.move({ workspace = hl.get_active_workspace(), window = "tag:minimized" }))
--- 		hl.dispatch(hl.dsp.window.clear_tags({ window = "tag:minimized" }))
--- 	else
--- 		hl.dispatch(hl.dsp.window.tag({ tag = "minimized", window = hl.get_active_window() }))
--- 		hl.dispatch(hl.dsp.window.move({ workspace = "special:minimized", follow = false }))
--- 	end
--- end)
-
--- alt + tab to switch between windows
-hl.bind("ALT+Tab", hl.dsp.window.cycle_next())
-hl.bind("ALT+Shift+Tab", hl.dsp.window.cycle_next({ reverse = true }))
