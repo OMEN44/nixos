@@ -57,10 +57,10 @@ hl.bind(mod .. "+mouse:272", hl.dsp.window.drag())
 -- resize with SUPER + right mouse button
 hl.bind(mod .. "+mouse:273", hl.dsp.window.resize())
 -- move with SUPER + arrow keys
-hl.bind(mod .. "+CTRL+left", hl.dsp.window.move({ x = -50, y = 0, relative = true }))
-hl.bind(mod .. "+CTRL+right", hl.dsp.window.move({ x = 50, y = 0, relative = true }))
-hl.bind(mod .. "+CTRL+up", hl.dsp.window.move({ x = 0, y = -50, relative = true }))
-hl.bind(mod .. "+CTRL+down", hl.dsp.window.move({ x = 0, y = 50, relative = true }))
+-- hl.bind(mod .. "+CTRL+left", hl.dsp.window.move({ x = -50, y = 0, relative = true }))
+-- hl.bind(mod .. "+CTRL+right", hl.dsp.window.move({ x = 50, y = 0, relative = true }))
+-- hl.bind(mod .. "+CTRL+up", hl.dsp.window.move({ x = 0, y = -50, relative = true }))
+-- hl.bind(mod .. "+CTRL+down", hl.dsp.window.move({ x = 0, y = 50, relative = true }))
 -- resize with SUPER + ALT + arrow keys
 hl.bind(mod .. "+ALT+left", hl.dsp.window.resize({ x = -50, y = 0, relative = true }))
 hl.bind(mod .. "+ALT+right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }))

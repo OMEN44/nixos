@@ -5,7 +5,7 @@
   programs.git = {
     enable = true;
     settings.user = {
-      name = "huon";
+      name = "OMEN44";
       email = "huonswales@gmail.com";
     };
   };

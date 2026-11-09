@@ -172,7 +172,6 @@ local function candidates(floating)
 	for _, w in ipairs(hl.get_windows()) do
 		if
 			w.mapped
-			and not w.hidden
 			and w.floating == floating
 			and w.workspace
 			and w.workspace.visible

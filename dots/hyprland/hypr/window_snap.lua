@@ -1,4 +1,5 @@
 local mod = "SUPER"
+local groups = require("groups")
 
 --------------< Helpers >--------------
 
@@ -106,6 +107,12 @@ local function snap(dir)
 	local axis = chain_axis(tiled, w.monitor)
 
 	if not w.floating then
+		-- A tab in a group: pull it out of the group towards that side.
+		if w.group then
+			hl.dispatch(hl.dsp.window.move({ out_of_group = dir:sub(1, 1) }))
+			groups.tidy()
+			return
+		end
 		if (dir == "up" or dir == "down") and axis == "row" then
 			take_half(w, dir, #tiled)
 		else
@@ -153,6 +160,13 @@ hl.bind(mod .. "+SHIFT+mouse:272", function()
 	-- Four triangles: the cursor's offset from the centre picks the side.
 	local dx = c.x - (target.at.x + target.size.x / 2)
 	local dy = c.y - (target.at.y + target.size.y / 2)
+
+	-- Dropped in the middle of the window: stack it as a tab instead of splitting.
+	if math.abs(dx) < target.size.x * 0.2 and math.abs(dy) < target.size.y * 0.2 then
+		groups.stack_onto_tile(w, target)
+		return
+	end
+
 	local dir
 	if math.abs(dy) * target.size.x < math.abs(dx) * target.size.y then
 		dir = dx > 0 and "right" or "left"
