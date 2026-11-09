@@ -74,6 +74,7 @@ end
 -- windows whose old position overlaps it come back.
 local function restore(only_overlapping)
 	local prev = hl.get_active_window()
+	local restored = {}
 
 	run_guarded(function()
 		local alive = {}
@@ -102,6 +103,7 @@ local function restore(only_overlapping)
 				)
 			then
 				bring_back(f, rec)
+				restored[#restored + 1] = f
 			end
 		end
 
@@ -112,10 +114,24 @@ local function restore(only_overlapping)
 			end
 		end
 
-		-- Keep focus exactly where it was.
-		local a = hl.get_active_window()
-		if prev and (not a or a ~= prev) then
-			hl.dispatch(hl.dsp.focus({ window = prev }))
+		-- Focus the most recently used window that came back and raise it above the rest.
+		-- If nothing came back, keep focus where it was.
+		local target
+		for _, f in ipairs(restored) do
+			local id = f.focus_history_id < 0 and math.huge or f.focus_history_id
+			if not target or id < target.id then
+				target = { window = f, id = id }
+			end
+		end
+
+		if target then
+			hl.dispatch(hl.dsp.focus({ window = target.window }))
+			hl.dispatch(hl.dsp.window.alter_zorder({ window = target.window, mode = "top" }))
+		else
+			local a = hl.get_active_window()
+			if prev and (not a or a ~= prev) then
+				hl.dispatch(hl.dsp.focus({ window = prev }))
+			end
 		end
 	end)
 end
@@ -226,4 +242,27 @@ hl.bind("ALT + Tab", function()
 end)
 hl.bind("ALT + SHIFT + Tab", function()
 	cycle(-1)
+end)
+
+-- ALT + ` : jump between the floating windows and the tiled windows.
+-- From a floating window it focuses the most recently used tile, and from a tile the
+-- most recently used floating window.
+hl.bind("ALT + grave", function()
+	local a = hl.get_active_window()
+	if not a then
+		return
+	end
+
+	local target = candidates(not a.floating)[1]
+	if not target then
+		return
+	end
+
+	-- Guarded, so focusing a tile here does not trigger the "hide overlapping floats" rule.
+	run_guarded(function()
+		hl.dispatch(hl.dsp.focus({ window = target }))
+		if target.floating then
+			hl.dispatch(hl.dsp.window.alter_zorder({ window = target, mode = "top" }))
+		end
+	end)
 end)

@@ -40,7 +40,6 @@
     kdePackages.qtdeclarative # for qml language server
 
     xinit
-    kitty
     alacritty
   ];
 }
