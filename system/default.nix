@@ -7,5 +7,7 @@
     ./specialisations.nix
     ./nvidia.nix
     ./v4l2loopback.nix
+    ./udev.nix
+    ./steam.nix
   ];
 }

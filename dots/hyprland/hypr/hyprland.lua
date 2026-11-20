@@ -64,9 +64,9 @@ hl.config({
 
 hl.on("hyprland.start", function()
 	hl.exec_cmd("cursor-clip --daemon")
-	hl.exec_cmd("mako")
-	hl.exec_cmd("systemctl --user start hyprpolkitagent")
+	hl.exec_cmd("lxqt-policykit-agent")
 	hl.exec_cmd("quickshell")
+	hl.exec_cmd("udiskie")
 	hl.exec_cmd("hyprpaper")
 	if hyprcapture_plugin then
 		os.execute("hyprctl reload")

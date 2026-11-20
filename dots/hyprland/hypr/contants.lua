@@ -13,7 +13,7 @@ return {
 			name = "HDMI-A-1",
 			width = 1920,
 			height = 1080,
-			refresh = 165,
+			refresh = 144,
 			scale = 1.0,
 		},
 		center = {

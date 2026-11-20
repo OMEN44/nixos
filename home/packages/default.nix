@@ -9,6 +9,8 @@
     ./ulauncher.nix
     ./fastfetch.nix
     ./vivaldi.nix
+    ./kicad.nix
+    ./games.nix
   ];
 
   home.packages = with pkgs; [
@@ -29,7 +31,6 @@
     libreoffice
     obs-studio
     rpi-imager
-    kicad
     # camera tools
     guvcview # video device settings editor gui
     v4l-utils
@@ -40,6 +41,7 @@
     kdePackages.qtdeclarative # for qml language server
 
     xinit
+    kitty
     alacritty
   ];
 }
